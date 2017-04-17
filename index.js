@@ -24,20 +24,20 @@ const handleError = err => {
     gutil.log(colors.red(`plugin: ${err.plugin}`))
 }
 
-gulp.task('es6', () => {
-    gulp.src(`${CURR_DIR}/es6/*.js`, `${CURR_DIR}/es6/**/*.js`)
-        .pipe(babel({
-            presets: ['es2015']
-        }))
-        .pipe(gulp.dest('dist'));
-})
+// gulp.task('es6', () => {
+//     gulp.src(`${CURR_DIR}/es6/*.js`, `${CURR_DIR}/es6/**/*.js`)
+//         .pipe(babel({
+//             presets: ['es2015']
+//         }))
+//         .pipe(gulp.dest('dist'));
+// })
 
 //报错不会中断的watch任务
 var default_watch = (opts) => {
     const {jsOutDir,cssOutDir} = opts
-    gulp.watch(`${CURR_DIR}/es6/**/*.es6`, (event) => {
+    gulp.watch(`**/*.es6`, (event) => {
         refresh.listen()
-        const paths = watchPath(event, 'es6/', `${jsOutDir}/`)
+        const paths = watchPath(event, '/', `${jsOutDir}/`)
 
         const combined = combiner.obj([
             gulp.src(paths.srcPath),
@@ -47,7 +47,6 @@ var default_watch = (opts) => {
             gulp.dest(paths.distDir),
             notify(`${path.basename(paths.srcPath)} transferred!!!`)
         ])
-        console.log(paths.distDir)
         combined.on('error', handleError)
     })
 
@@ -64,7 +63,6 @@ var default_watch = (opts) => {
             gulp.dest(paths.distDir),
             notify(`${path.basename(paths.srcPath)} transferred!!!`)
         ])
-        console.log(paths.distDir)
         combined.on('error', handleError)
     })
 }
