@@ -1,7 +1,7 @@
 ## first blood 
 this is a simple gulp watch process, compile flow not interrupted with error
     
-    npm install --save-dev mstaticer-watch
+    npm install --save-dev gulp-mix-watch
 ### Basic usage
 ##### directory structure
     es6
@@ -11,7 +11,7 @@ this is a simple gulp watch process, compile flow not interrupted with error
 
 ##### usage
 ``` javascript
-var processWatch = require("mstaticer-watch")
+var processWatch = require("gulp-mix-watch")
 var gulp = require("gulp")
 
 gulp.task('watch',processWatch({
